@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Operations</title>
+    <link rel="stylesheet" href="style.css">
+    
+      
+    
+</head>
+<body>
+
+
+    <header>
+        <h1>Dropdown Checker Box</h1>
+    </header>
+
+    <div class="container">
+        <h2>Number Operations</h2>
+        <label for="operation">Choose an Operation:</label>
+        <select id="operation">
+            <option value="palindrome">Palindrome Check</option>
+            <option value="factorial">Factorial</option>
+            <option value="prime">Prime Check</option>
+            <option value="reverse">Reverse Number</option>
+            
+        </select>
+
+        <br>
+        <input type="number" id="numberInput" placeholder="Enter a number">
+        <button onclick="performOperation()">Calculate</button>
+        
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function performOperation() {
+            let num = document.getElementById("numberInput").value;
+            let operation = document.getElementById("operation").value;
+            let result = "";
+
+            if (num === "") {
+                document.getElementById("result").innerText = "Please enter a number.";
+                return;
+            }
+
+            num = parseInt(num);
+
+            switch (operation) {
+                case "palindrome":
+                    result = isPalindrome(num) ? `${num} is a Palindrome.` : `${num} is NOT a Palindrome.`;
+                    break;
+                case "factorial":
+                    result = `Factorial of ${num} is ${factorial(num)}.`;
+                    break;
+                case "prime":
+                    result = isPrime(num) ? `${num} is a Prime Number.` : `${num} is NOT a Prime Number.`;
+                    break;
+                case "reverse":
+                    result = `Reverse of ${num} is ${reverseNumber(num)}.`;
+                    break;
+               
+                default:
+                    result = "Invalid selection.";
+            }
+
+            document.getElementById("result").innerText = result;
+        }
+
+        // 1️⃣ Check if a number is a Palindrome
+        function isPalindrome(num) {
+            let strNum = num.toString();
+            let reversed = strNum.split("").reverse().join("");
+            return strNum === reversed;
+        }
+
+        // 2️⃣ Calculate Factorial of a number
+        function factorial(num) {
+            if (num === 0 || num === 1) return 1;
+            let fact = 1;
+            for (let i = 2; i <= num; i++) {
+                fact *= i;
+            }
+            return fact;
+        }
+
+        // 3️⃣ Check if a number is Prime
+        function isPrime(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        // 4️⃣ Reverse a number
+        function reverseNumber(num) {
+            return parseInt(num.toString().split("").reverse().join(""));
+        }
+
+        
+    </script>
+
+</body>
+</html>
